@@ -5,10 +5,9 @@ class Solution(object):
         :type target: int
         :rtype: List[int]
         """
-        lst=[]
-        for i in range(0,len(nums)):
-            for j in range(i+1,len(nums)):
-                if nums[i]+nums[j]==target:
-                    lst.append(i)
-                    lst.append(j)
-        return lst
+        seen={}
+        for i,n in enumerate(nums):
+            diff=target-n
+            if diff in seen:
+                return [i,seen[diff]]
+            seen[n]=i
